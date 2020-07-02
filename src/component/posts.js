@@ -3,7 +3,6 @@ import axios from 'axios';
 import { fadeIn } from 'react-animations';
 import Radium, {StyleRoot} from 'radium';
 
- 
 const styles = {
   bounceIn: {
     animation: 'x 6s',
@@ -26,9 +25,9 @@ function Posts() {
       <StyleRoot>
     <div style={styles.bounceIn}>
             {
-                posts.map(post=>(<div className="ui segment">
-                <h4 className="ui right floated header">Post : {post.id}</h4>
-                <div className="ui clearing divider"></div>
+                posts.map(post=>(<div className="postElement">
+                <h4 className="head">Post : {post.id}</h4>
+                <div className="body"><hr></hr></div>
             <div ><h3>Title :</h3><p>{post.title}</p><h3>Discription :</h3><p>{post.body}</p></div>
               </div>))
                 

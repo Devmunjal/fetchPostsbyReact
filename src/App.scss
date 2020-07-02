@@ -1,0 +1,20 @@
+
+.App {
+  text-align: center;
+
+  .postElement{
+    border: 1px solid black;
+    border-radius: 8px;
+    box-shadow: 0px 1px 3px black,0px 1px 5px black;
+    padding: 2%;
+    margin:3%;
+    .head{
+      float: right;
+      font-size: 20px;
+    }
+    .body{
+      margin-top: 10%;
+    }
+  }
+}
+

@@ -1,11 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
-import Posts from './component/posts'
+import Posts from './component/posts';
+import Header from './component/header';
+import Footer from './component/footer';
+
 function App() {
   return (
     <div className="App">
+      <Header />
       <Posts />
+      <Footer />
     </div>
   );
 }

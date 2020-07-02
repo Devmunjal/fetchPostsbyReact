@@ -1,33 +1,41 @@
-import React,{Component} from "react";
-import axios from 'axios'
-class Posts extends Component{
-constructor(props) {
-    super(props)
-    this.state={
-        posts:[]
-    }
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { fadeIn } from 'react-animations';
+import Radium, {StyleRoot} from 'radium';
+
+ 
+const styles = {
+  bounceIn: {
+    animation: 'x 6s',
+    animationName: Radium.keyframes(fadeIn, 'bounceIn')
+  }
 }
-componentDidMount() {
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-        .then(response => {
-            console.log(response.data)
-            this.setState({posts:response.data})})
+
+function Posts() {
+    const [posts,setPosts]=useState([])
+    useEffect(()=>{
+        axios.get('https://jsonplaceholder.typicode.com/posts')
+        .then(response=>{
+            setPosts(response.data)
+        })
         .catch(error=>{
             console.log(error)
         })
-}
-render() {
-    const {posts} = this.state
-    return(
-        <div>
-            <h2> List Of Posts </h2>
+    },[])
+  return (
+      <StyleRoot>
+    <div style={styles.bounceIn}>
             {
-                posts.length?
-                    posts.map(post=><div key={post.id} style={{border:'1px solid',borderRadius:'8px',margin:'1%'}}><p>Title : {post.title}</p>
-                    <p>Body : {post.body}</p></div>):null
+                posts.map(post=>(<div className="ui segment">
+                <h4 className="ui right floated header">Post : {post.id}</h4>
+                <div className="ui clearing divider"></div>
+            <div ><h3>Title :</h3><p>{post.title}</p><h3>Discription :</h3><p>{post.body}</p></div>
+              </div>))
+                
             }
-        </div>
-    )
+    </div>
+    </StyleRoot>
+  );
 }
-}
-export default Posts
+
+export default Posts;
